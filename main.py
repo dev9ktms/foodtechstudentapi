@@ -89,7 +89,8 @@ async def auth(request: Request, db: Session=Depends(get_db)):
         loginSession.email = token.get('userinfo')['email']
         db.add(loginSession)
         db.commit()
-        response = RedirectResponse(url="http://localhost:3000/authredirect/student?token="+str(token.get('access_token')))
+        response = RedirectResponse(url="/authredirect/student?token="+str(token.get('access_token')))
+        # response = RedirectResponse(url="http://localhost:3000/authredirect/student?token="+str(token.get('access_token')))
         return response
     except ValueError:
         raise HTTPException(status_code=498, detail=ValueError)
