@@ -89,7 +89,7 @@ async def auth(request: Request, db: Session=Depends(get_db)):
         loginSession.email = token.get('userinfo')['email']
         db.add(loginSession)
         db.commit()
-       response = RedirectResponse(
+        response = RedirectResponse(
             url="http://localhost:3000/authredirect/student?token="+str(token.get('access_token')))
         return response
     except ValueError:
